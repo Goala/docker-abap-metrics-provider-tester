@@ -1,0 +1,42 @@
+version: '3.7'
+services:
+    influxdb:
+        image: influxdb:1.7-alpine
+        container_name: influxdb
+        volumes:
+            - ./influxdb/influxdb.conf:/etc/influxdb/influxdb.conf:ro
+            - influxdb_data:/var/lib/influxdb
+        ports:
+            - "8083:8083"
+            - "8086:8086"
+            - "8088:8088"
+            - "8090:8090"
+  
+    telegraf:
+        image: telegraf:1.11-alpine
+        container_name: telegraf
+        ports:
+            - '8125:8125/udp'
+        volumes:
+            - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+        depends_on:
+            - influxdb
+        links:
+            - influxdb
+ 
+    grafana:
+        image: grafana/grafana:6.3.3
+        container_name: grafana
+        ports:
+            - "3000:3000"
+        depends_on:
+            - influxdb
+        links:
+            - influxdb
+        volumes:
+            - grafana_data:/var/lib/grafana
+            - ./grafana/provisioning/:/etc/grafana/provisioning/
+
+volumes:
+    grafana_data: {}
+    influxdb_data: {}
