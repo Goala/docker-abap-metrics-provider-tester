@@ -15,13 +15,12 @@ services:
     telegraf:
         image: telegraf:1.11-alpine
         container_name: telegraf
+        network_mode: host
         ports:
             - '8125:8125/udp'
         volumes:
             - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
         depends_on:
-            - influxdb
-        links:
             - influxdb
  
     grafana:
