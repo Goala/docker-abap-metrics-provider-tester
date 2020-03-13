@@ -24,7 +24,7 @@ services:
             - influxdb
  
     grafana:
-        image: grafana/grafana:6.3.3
+        image: grafana/grafana
         container_name: grafana
         ports:
             - "3000:3000"
@@ -35,6 +35,7 @@ services:
         volumes:
             - grafana_data:/var/lib/grafana
             - ./grafana/provisioning/:/etc/grafana/provisioning/
+            - ./grafana/dashboards/:/etc/grafana/dashboards/
 
 volumes:
     grafana_data: {}
