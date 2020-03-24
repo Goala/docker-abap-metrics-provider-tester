@@ -6,6 +6,7 @@ curl -G http://localhost:8086/query?pretty=true --data-urlencode "db=glances" --
 curl -XPOST 'http://localhost:8086/query' --data-urlencode 'q=CREATE DATABASE influxdb'
 curl -G http://localhost:8086/query?pretty=true --data-urlencode "db=influxdb" --data-urlencode "q=SHOW MEASUREMENTS"
 curl -G 'http://localhost:8086/query' --data-urlencode 'q=select * from influxdb..http'
+curl -G 'http://localhost:8086/query' --data-urlencode 'q=select shortdumps_number_of_shortdumps from influxdb..http where time > now() - 1m' | jq .
 
 ## telegraf utils
 
