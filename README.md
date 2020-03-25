@@ -11,6 +11,7 @@ curl -G 'http://localhost:8086/query' --data-urlencode 'q=select shortdumps_numb
 ## telegraf utils
 
 telegraf --config telegraf.conf --test
+docker run --rm telegraf telegraf config > telegraf_template.conf
 
 ## based on 
 https://github.com/bcremer/docker-telegraf-influx-grafana-stack
