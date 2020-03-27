@@ -22,6 +22,9 @@ services:
             - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
         depends_on:
             - influxdb
+        environment:
+            - username=$username
+            - password=$password
  
     grafana:
         image: grafana/grafana

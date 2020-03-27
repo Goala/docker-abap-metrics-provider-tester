@@ -18,6 +18,15 @@ telegraf --config telegraf.conf --test
 
 docker run --rm telegraf telegraf config > telegraf_template.conf
 
+## username/password for telegraf input plugins
+
+The username/password will be passed via enviroment variables and docker to telegraf.conv.
+
+```
+export username=<<username>>
+export password=<<password>>
+```
+
 ## based on 
 https://github.com/bcremer/docker-telegraf-influx-grafana-stack
 
